@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escola Municipal Coronel Américo Teixeira</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #009688, #00bcd4);
+            color: white;
+            text-align: center;
+        }
+
+        header {
+            padding: 40px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .section {
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            color: black;
+            display: none;
+        }
+
+        .quadro {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .grade {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .horario {
+            background-color: #009688;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>Bem-vindo(a) à Escola Municipal Coronel Américo Teixeira</header>
+
+    <nav>
+        <ul>
+            <li><a onclick="mostrarSeção('inicio')">Início</a></li>
+            <li><a onclick="mostrarSeção('cel-ia')">Cel IA</a></li>
+            <li><a onclick="mostrarSeção('projetos')">Projetos</a></li>
+            <li><a onclick="mostrarSeção('horarios')">Horários Escolares</a></li>
+        </ul>
+    </nav>
+
+    <section id="inicio" class="section">
+        <h2>Você não está sabendo das notícias desse mês?</h2>
+        <p>Aqui no Coronel você ficará por dentro de tudo.</p>
+        <div class="quadro">
+            <img src="imagem de queimadas.jpg" alt="Imagem da notícia" width="80%">
+            <h3>No brasil, o desmatamento também é um ploblema significativo. Em alguns casos, como o Maranhão, foi relatado que 80% da floresta amâsonica já foi desativada.</h3>
+            <img src="WhatsApp-Image-2025-06-03-at-11.48.38-819x1024.webp" alt="imagem de notícias" width="80%">
+           <h3>Celebramos neste mês a campanha do 'Junho Verde', dedicada à conscientização ambiental. A proposta segue o Dia Mundial do Meio Ambiente, comemorado em 5 de junho. O objetivo é sensibilizar a população sobre a importância da preservação do meio ambiente e da adoção de medidas e práticas sustentáveis, como o fortalecimento da cultura de sustentabilidade</h3>
+        </div>
+    </section>
+
+    <section id="cel-ia" class="section">
+        <h2>Cel IA - Pergunte o que quiser!</h2>
+        <input type="text" id="pergunta" placeholder="Faça uma pergunta">
+        <button onclick="responderIA()">Perguntar</button>
+        <p id="resposta"></p>
+    </section>
+
+    <section id="projetos" class="section">
+        <h2>Aqui em projetos você pode encontrar:</h2>
+        <div class="quadro">
+            <img src="projeto.jpg" alt="Imagem do projeto" width="80%">
+            <p>Texto sobre o projeto</p>
+        </div>
+    </section>
+
+    <section id="horarios" class="section">
+        <h2>Horários Escolares</h2>
+        <div class="grade">
+            <button>Segunda-feira</button>
+            <div class="horario">Terça-feira</div>
+            <div class="horario">Quarta-feira</div>
+            <div class="horario">Quinta-feira</div>
+            <div class="horario">Sexta-feira</div>
+            <div class="horario">Sábado</div>
+            <div class="horario">Domingo</div>
+            <div class="horario">Outro</div>
+        </div>
+    </section>
+
+    <script>
+        function mostrarSeção(id) {
+            let secoes = document.querySelectorAll(".section");
+            secoes.forEach(secao => secao.style.display = "none");
+
+            let secaoSelecionada = document.getElementById(id);
+            if (secaoSelecionada) {
+                secaoSelecionada.style.display = "block";
+            }
+        }
+
+        function responderIA() {
+            let pergunta = document.getElementById("pergunta").value.toLowerCase();
+            let resposta;
+
+            const respostas = {
+                "qual é o nome da escola?": "Escola Municipal Coronel Américo Teixeira",
+                "quem é a diretora?": "O diretora da escola é o Sr. Ana Flavia.",
+                ":quem cuida da supervisão?": "Quem está cuidando da supervisão é Sr. Eula Sr.Daniela Sr.Lucas.",
+                "quais são os horários de aula?": "As aulas começam às 7h e terminam às 17h.",
+                "quais são os projetos em andamento?": "Atualmente, estamos desenvolvendo o projeto de reciclagem e o projeto de inclusão digital.",
+                "como posso me inscrever em um projeto?": "Para se inscrever em um projeto, você deve falar com o coordenador de projetos na escola.",
+                "quais são as disciplinas oferecidas?": "Oferecemos disciplinas como Matemática, Português, Ciências, História e Geografia.",
+                "quem são os professores?": "Nossos professores são altamente qualificados e dedicados ao ensino.",
+                "como posso entrar em contato com a escola?": "Você pode entrar em contato pelo telefone (11) 1234-5678 ou pelo e-mail."
+            }
+     
+            resposta = respostas[pergunta] || "Desculpe, repita por favor!";
+
+            document.getElementById("resposta").textContent = resposta;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            mostrarSeção("inicio");
+        });
+    </script>
+
+</body>
+</html>
